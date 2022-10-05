@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { FaHome, FaUser, FaListUl } from 'react-icons/fa'
 
 function RegistrationForm({ danceClass, student, handleRegistration, newRegistration }) {
 
-    const [fee, setFee] = useState(null)
-    const [studentId, setStudentId] = useState(null)
+    const [fee, setFee] = useState('')
+    const [studentId, setStudentId] = useState('')
 
     const formHandler = (e) => {
         e.preventDefault();
@@ -23,38 +24,43 @@ function RegistrationForm({ danceClass, student, handleRegistration, newRegistra
             })
     }
 
-    function logInputs(danceClass, student) {
-        console.log(danceClass)
-        console.log(student)
-    }
     return (
         < div >
-            {logInputs(danceClass, student)}
             {
                 student == null ?
-                    <div>
-                        <h1>Create Student before booking a class</h1>
-                    </div>
+                    <section className='heading'>
+                        <p>Create Student before registering</p>
+                    </section>
                     :
-                    <div>
-                        <h1>You are about to book a class for student: {student.id}</h1>
+                    <section className="form">
                         <form onSubmit={formHandler}>
-                            <div>
-                                <div>
-                                    <label>Fee</label>
-                                    <input placeholder="Fee" onChange={e => setFee(e.target.value)} value={fee}></input>
-                                </div>
-                                <div>
-                                    <label>Student ID</label>
-                                    <input placeholder="Student ID" onChange={e => setStudentId(e.target.value)} value={studentId}></input>
-                                </div>
+                            <section className='heading'>
+                                <p>You are about to book a class for student: {student.id}</p>
+                            </section>
+                            <div className='form-group'>
+                                <input
+                                    type='number'
+                                    className='form-control'
+                                    id='fee'
+                                    value={fee}
+                                    onChange={e => setFee(e.target.value)}
+                                    placeholder='Enter Fee' />
+                            </div>
+                            <div className='form-group'>
+                                <input
+                                    type='text'
+                                    className='form-control'
+                                    id='studentId'
+                                    value={studentId}
+                                    onChange={e => setStudentId(e.target.value)}
+                                    placeholder='Enter Student ID' />
                             </div>
 
-                            <div>
-                                <button type='submit'>Book Class</button>
+                            <div className="form-group">
+                                <button className='btn btn-block' type='submit'>Register In Class</button>
                             </div>
                         </form>
-                    </div>
+                    </section>
             }
 
         </div >
