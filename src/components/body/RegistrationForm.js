@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-function RegistrationForm({ danceClass, student, handleRegistration }) {
+function RegistrationForm({ danceClass, student, handleRegistration, newRegistration }) {
 
-    const [fee, setFee] = useState(0)
-    const [studentId, setStudentId] = useState(0)
+    const [fee, setFee] = useState(null)
+    const [studentId, setStudentId] = useState(null)
 
     const formHandler = (e) => {
         e.preventDefault();
@@ -16,9 +16,10 @@ function RegistrationForm({ danceClass, student, handleRegistration }) {
             }),
         })
             .then(r => r.json())
-            .then(newRegistration => {
-                setFee(0);
-                setStudentId(0);
+            .then(registration => {
+                newRegistration(registration)
+                setFee(null);
+                setStudentId(null);
             })
     }
 
@@ -32,11 +33,11 @@ function RegistrationForm({ danceClass, student, handleRegistration }) {
             {
                 student == null ?
                     <div>
-                        <h1>Create Student before registering</h1>
+                        <h1>Create Student before booking a class</h1>
                     </div>
                     :
                     <div>
-                        <h1>You are about to book a class for student: {student.id} and classID: {danceClass.id}</h1>
+                        <h1>You are about to book a class for student: {student.id}</h1>
                         <form onSubmit={formHandler}>
                             <div>
                                 <div>
@@ -50,7 +51,7 @@ function RegistrationForm({ danceClass, student, handleRegistration }) {
                             </div>
 
                             <div>
-                                <button type='submit'>Register In Class</button>
+                                <button type='submit'>Book Class</button>
                             </div>
                         </form>
                     </div>

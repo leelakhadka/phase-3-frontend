@@ -3,7 +3,7 @@ import { useState } from "react";
 import DanceClass from "./DanceClass";
 import RegistrationForm from "./RegistrationForm";
 
-function DanceClassList({ dance_classes, student }) {
+function DanceClassList({ dance_classes, student, newRegistration }) {
     const [toggle, setToggle] = useState(false);
     const [danceClass, setDanceClass] = useState(null);
 
@@ -22,7 +22,7 @@ function DanceClassList({ dance_classes, student }) {
             {
                 toggle ?
                     <div>
-                        <RegistrationForm danceClass={danceClass} student={student} handleRegistration={showRegistration} />
+                        <RegistrationForm danceClass={danceClass} student={student} handleRegistration={showRegistration} newRegistration={newRegistration} />
                     </div>
                     :
                     <div>
