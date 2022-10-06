@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { FaUser } from 'react-icons/fa'
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-function StudentForm({ newStudent }) {
+function StudentForm({ newStudent, studentsList }) {
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -14,9 +13,9 @@ function StudentForm({ newStudent }) {
         e.preventDefault();
 
         if (firstName === '' || lastName === '' || phone === '' || email === '') {
-            toast.error("Please Enter all the fields in the form", {
-                position: toast.POSITION.BOTTOM_CENTER
-            });
+            toast.error("Please Enter all the fields in the form");
+        } else if (studentsList.map(student => student.email).includes(email)) {
+            toast.error("Student with " + email + " already exists!");
         } else {
             fetch('http://localhost:9292/students', {
                 method: 'POST',
@@ -32,15 +31,9 @@ function StudentForm({ newStudent }) {
                     setLastName('');
                     setPhone('');
                     setEmail('');
-                    toast.success("You have created a new Student", {
-                        position: toast.POSITION.BOTTOM_CENTER
-                    });
+                    toast.success("You have created a new Student");
                 })
         }
-    }
-
-    const notify = () => {
-
     }
 
     return (

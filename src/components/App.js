@@ -55,7 +55,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/create_student' element={<StudentForm newStudent={newStudent} />} />
+        <Route path='/create_student' element={<StudentForm newStudent={newStudent} studentsList={studentsList} />} />
         <Route path='/total_students' element={<Students studentsList={studentsList} />} />
         <Route path='/available_classes' element={<AvailableClasses classList={classList} student={studentToBeAdded} newRegistration={newRegistration} />} />
         <Route path='/view_my_bookings' element={<MyBookings student={studentToBeAdded} studentBookings={studentBookings} deleteRegistration={deleteRegistration} updatedRegistration={updatedRegistration} />} />

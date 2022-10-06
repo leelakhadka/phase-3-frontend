@@ -3,6 +3,7 @@ import { useState } from "react";
 import DanceClassSearch from "./DanceClassSearch";
 import DanceClassList from "./DanceClassList";
 import RegistrationForm from "./RegistrationForm";
+import { toast } from 'react-toastify';
 
 function AvailableClasses({ classList, student, newRegistration }) {
     const [toggle, setToggle] = useState(false);
@@ -15,7 +16,12 @@ function AvailableClasses({ classList, student, newRegistration }) {
     }
 
     function showRegistration(isShowRegistration) {
-        setToggle(isShowRegistration)
+        if (student == null) {
+            toast.warn("Create Student before booking this class");
+        } else {
+            setToggle(isShowRegistration)
+        }
+
     }
 
     const filterdList = classList.filter(danceClass => danceClass.category.toLowerCase().includes(searchString.toLowerCase()));
