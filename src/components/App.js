@@ -5,6 +5,7 @@ import MyBookings from './body/MyBookings';
 import StudentForm from './body/StudentForm';
 import Home from './body/Home';
 import Header from './header/Header';
+import Students from './body/Students';
 
 function App() {
   const [classList, setClassList] = useState([])
@@ -55,6 +56,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/create_student' element={<StudentForm newStudent={newStudent} />} />
+        <Route path='/total_students' element={<Students studentsList={studentsList} />} />
         <Route path='/available_classes' element={<AvailableClasses classList={classList} student={studentToBeAdded} newRegistration={newRegistration} />} />
         <Route path='/view_my_bookings' element={<MyBookings student={studentToBeAdded} studentBookings={studentBookings} deleteRegistration={deleteRegistration} updatedRegistration={updatedRegistration} />} />
       </Routes>

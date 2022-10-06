@@ -140,7 +140,9 @@ h3 {
     transform: scale(0.98);
 }
 
+.student,
 .dance_class,
+.student-headings,
 .dance_class-headings {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -154,6 +156,7 @@ h3 {
     text-align: center;
 }
 
+.student-headings,
 .dance_class-headings {
     font-weight: 700;
 }

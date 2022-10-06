@@ -17,6 +17,11 @@ function Header() {
                     </Link>
                 </li>
                 <li>
+                    <Link to='/total_students'>
+                        <FaListUl />Total Students in Studio
+                    </Link>
+                </li>
+                <li>
                     <Link to='/available_classes'>
                         <FaListUl />Available Classes
                     </Link>

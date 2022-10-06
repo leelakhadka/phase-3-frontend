@@ -7,24 +7,34 @@ function StudentForm({ newStudent }) {
     const [lastName, setLastName] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
+    const [created, setCreated] = useState(false)
+    const [isInvalid, setIsInvalid] = useState(false)
 
     const formHandler = (e) => {
         e.preventDefault();
-        fetch('http://localhost:9292/students', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                first_name: firstName, last_name: lastName, phone, email
-            }),
-        })
-            .then(r => r.json())
-            .then(student => {
-                newStudent(student);
-                setFirstName('');
-                setLastName('');
-                setPhone('');
-                setEmail('');
+
+        if (firstName === '' || lastName === '' || phone === '' || email === '') {
+            setIsInvalid(true);
+            setTimeout(() => setIsInvalid(false), 3000)
+        } else {
+            fetch('http://localhost:9292/students', {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    first_name: firstName, last_name: lastName, phone, email
+                }),
             })
+                .then(r => r.json())
+                .then(student => {
+                    newStudent(student);
+                    setFirstName('');
+                    setLastName('');
+                    setPhone('');
+                    setEmail('');
+                    setCreated(true);
+                    setTimeout(() => setCreated(false), 3000)
+                })
+        }
     }
 
     return (
@@ -77,6 +87,25 @@ function StudentForm({ newStudent }) {
                     </div>
                 </form>
             </section>
+
+
+            {
+                created ?
+                    <div>
+                        <h1 className="container">You have created a new Student</h1>
+                    </div>
+                    :
+                    <></>
+            }
+
+            {
+                isInvalid ?
+                    <div>
+                        <h1 className="container">Please Enter all the fields in the form</h1>
+                    </div>
+                    :
+                    <></>
+            }
         </>
     )
 }

@@ -1,27 +1,33 @@
 import React, { useState } from "react";
-import { FaHome, FaUser, FaListUl } from 'react-icons/fa'
 
 function RegistrationForm({ danceClass, student, handleRegistration, newRegistration }) {
 
     const [fee, setFee] = useState('')
     const [studentId, setStudentId] = useState('')
+    const [isInvalid, setIsInvalid] = useState(false)
 
     const formHandler = (e) => {
         e.preventDefault();
-        handleRegistration(false)
-        fetch('http://localhost:9292/registrations', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                fee, student_id: studentId, dance_class_id: danceClass.id
-            }),
-        })
-            .then(r => r.json())
-            .then(registration => {
-                newRegistration(registration)
-                setFee(null);
-                setStudentId(null);
+
+        if (fee === '' || fee > 10 || fee < 1 || studentId === '') {
+            setIsInvalid(true);
+            setTimeout(() => setIsInvalid(false), 3000)
+        } else {
+            handleRegistration(false)
+            fetch('http://localhost:9292/registrations', {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    fee, student_id: studentId, dance_class_id: danceClass.id
+                }),
             })
+                .then(r => r.json())
+                .then(registration => {
+                    newRegistration(registration)
+                    setFee(null);
+                    setStudentId(null);
+                })
+        }
     }
 
     return (
@@ -48,7 +54,7 @@ function RegistrationForm({ danceClass, student, handleRegistration, newRegistra
                             </div>
                             <div className='form-group'>
                                 <input
-                                    type='text'
+                                    type='number'
                                     className='form-control'
                                     id='studentId'
                                     value={studentId}
@@ -61,6 +67,15 @@ function RegistrationForm({ danceClass, student, handleRegistration, newRegistra
                             </div>
                         </form>
                     </section>
+            }
+
+            {
+                isInvalid ?
+                    <div>
+                        <h1 className="container">Please pay fee between 1 to 10 and enter correct student ID</h1>
+                    </div>
+                    :
+                    <></>
             }
 
         </div >
