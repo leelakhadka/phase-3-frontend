@@ -19,13 +19,11 @@ function MyBookings({ student, studentBookings, deleteRegistration, updatedRegis
 
     return (
         <div>
-            {console.log(studentBookings)}
-            {console.log(student)}
             {
                 student == null ?
-                    <div>
-                        <h1>Create Student before viewing your bookings</h1>
-                    </div>
+                    <section className='heading'>
+                        <p>Create Student before viewing your bookings</p>
+                    </section>
                     :
                     <div>
                         {
@@ -34,9 +32,19 @@ function MyBookings({ student, studentBookings, deleteRegistration, updatedRegis
                                     <UpdateRegistrationForm registration={registration} handleRegistration={showRegistration} updatedRegistration={updatedRegistration} />
                                 </div>
                                 :
-                                <div>
-                                    {booking_components}
-                                </div>
+                                <>
+                                    <h1> Dance Classes for {student.first_name} {student.last_name} ({studentBookings.length})</h1>
+                                    <div className="tickets">
+                                        <div className="dance_class-headings">
+                                            <div>Booked Class</div>
+                                            <div>Total Paid/Remaining Balance</div>
+                                            <div>Cancel Booking</div>
+                                            <div>Pay Remaining</div>
+                                        </div>
+                                        {booking_components}
+                                    </div>
+
+                                </>
                         }
                     </div>
             }

@@ -2,14 +2,14 @@ import React from "react";
 
 function DanceClassSearch({ search, onSearchChange }) {
     return (
-        <div>
+        <div className='form-group'>
             <input
+                type='text'
+                className='form-control'
+                id='search'
                 value={search}
-                type="text"
-                id="search"
-                placeholder="Search by Dance Category"
-                onChange={(e) => onSearchChange(e.target.value)}
-            />
+                onChange={e => onSearchChange(e.target.value)}
+                placeholder='Search by Dance Category' />
         </div>
     )
 }

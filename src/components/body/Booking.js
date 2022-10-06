@@ -19,21 +19,11 @@ function Booking({ booking, deleteRegistration, handleRegistration, existingRegi
     }
 
     return (
-        <div>
-            <p>Booked Class: {dance_class.category}</p>
-            <p>Amount paid: {fee}</p>
-            {
-                paid ?
-                    <div>
-                        <p>Total Amount Paid</p>
-                    </div>
-                    :
-                    <div>
-                        <p>Partial Amount Paid </p>
-                    </div>
-            }
-            <button onClick={handleClick}>Cancel this booking</button>
-            <button onClick={handleToggle}>Update this booking</button>
+        <div className='dance_class'>
+            <p>{dance_class.category}</p>
+            <p>{fee}/{10 - fee}</p>
+            <button className='btn btn-danger' onClick={handleClick}>Cancel this booking</button>
+            <button className='btn btn-primary' onClick={handleToggle}>Update this booking</button>
         </div>
     )
 }
