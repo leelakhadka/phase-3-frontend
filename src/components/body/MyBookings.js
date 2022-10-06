@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
+import { FaArrowCircleLeft } from 'react-icons/fa'
 import Booking from "./Booking";
 import UpdateRegistrationForm from "./UpdateRegistrationForm";
 
@@ -21,8 +23,11 @@ function MyBookings({ student, studentBookings, deleteRegistration, updatedRegis
         <div>
             {
                 student == null ?
-                    <section className='heading'>
-                        <p>Create Student before viewing your bookings</p>
+                    <section className='container'>
+                        <h1>Create Student before viewing your bookings</h1>
+                        <Link to='/create_student' className='btn container' style={{ width: '250px', position: 'center' }}>
+                            <FaArrowCircleLeft /> Back To Create Student
+                        </Link>
                     </section>
                     :
                     <div>
