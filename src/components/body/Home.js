@@ -7,7 +7,7 @@ import Salsa from "./images/salsa2.jpeg"
 function Home() {
     return (
         <div>
-            <h1 className="container">Welcome to Leela's Dance Studio</h1>
+            <h1 className="container">Welcome to Leela's Dance STUDIO</h1>
 
             <div className="img-container">
                 <img className="img-style" src={Jazz2} />
