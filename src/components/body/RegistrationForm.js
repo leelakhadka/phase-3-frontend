@@ -1,17 +1,19 @@
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function RegistrationForm({ danceClass, student, handleRegistration, newRegistration }) {
 
     const [fee, setFee] = useState('')
     const [studentId, setStudentId] = useState('')
-    const [isInvalid, setIsInvalid] = useState(false)
 
     const formHandler = (e) => {
         e.preventDefault();
 
         if (fee === '' || fee > 10 || fee < 1 || studentId === '') {
-            setIsInvalid(true);
-            setTimeout(() => setIsInvalid(false), 3000)
+            toast.error("Please pay fee between 1 to 10 and enter correct student ID", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
         } else {
             handleRegistration(false)
             fetch('http://localhost:9292/registrations', {
@@ -68,16 +70,6 @@ function RegistrationForm({ danceClass, student, handleRegistration, newRegistra
                         </form>
                     </section>
             }
-
-            {
-                isInvalid ?
-                    <div>
-                        <h1 className="container">Please pay fee between 1 to 10 and enter correct student ID</h1>
-                    </div>
-                    :
-                    <></>
-            }
-
         </div >
     )
 }
