@@ -35,7 +35,7 @@ function MyBookings({ student, studentBookings, deleteRegistration, updatedRegis
                                 <>
                                     <h1> Dance Classes</h1>
                                     <div className="tickets">
-                                        <div className="ticket-headings">
+                                        <div className="dance_class-headings">
                                             <div>Booked Class</div>
                                             <div>Total Paid/Remaining Balance</div>
                                             <div>Cancel Booking</div>

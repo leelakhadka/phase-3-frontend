@@ -10,7 +10,7 @@ function DanceClassList({ dance_classes, handleRegistration, handleDanceClass })
         <>
             <h1> Dance Classes</h1>
             <div className="tickets">
-                <div className="ticket-headings">
+                <div className="dance_class-headings">
                     <div>Dance Styple</div>
                     <div>Location</div>
                     <div>Date/Time/Duration</div>
