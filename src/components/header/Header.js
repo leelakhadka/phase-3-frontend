@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { FaHome, FaUser, FaListUl } from 'react-icons/fa'
+import { FaHome, FaUser, FaUsers, FaListUl, FaEye } from 'react-icons/fa'
 
 function Header() {
     return (
@@ -18,7 +18,7 @@ function Header() {
                 </li>
                 <li>
                     <Link to='/total_students'>
-                        <FaListUl />Total Students in Studio
+                        <FaUsers />Students List
                     </Link>
                 </li>
                 <li>
@@ -28,7 +28,7 @@ function Header() {
                 </li>
                 <li>
                     <Link to='/view_my_bookings'>
-                        <FaListUl />View My Bookings
+                        <FaEye />View My Bookings
                     </Link>
                 </li>
             </ul>
