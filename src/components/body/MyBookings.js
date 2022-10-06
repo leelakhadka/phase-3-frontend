@@ -33,7 +33,7 @@ function MyBookings({ student, studentBookings, deleteRegistration, updatedRegis
                                 </div>
                                 :
                                 <>
-                                    <h1> Dance Classes</h1>
+                                    <h1> Dance Classes for {student.first_name} {student.last_name}</h1>
                                     <div className="tickets">
                                         <div className="dance_class-headings">
                                             <div>Booked Class</div>
