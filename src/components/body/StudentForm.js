@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FaUser } from 'react-icons/fa'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function StudentForm({ newStudent }) {
 
@@ -7,15 +9,14 @@ function StudentForm({ newStudent }) {
     const [lastName, setLastName] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
-    const [created, setCreated] = useState(false)
-    const [isInvalid, setIsInvalid] = useState(false)
 
     const formHandler = (e) => {
         e.preventDefault();
 
         if (firstName === '' || lastName === '' || phone === '' || email === '') {
-            setIsInvalid(true);
-            setTimeout(() => setIsInvalid(false), 3000)
+            toast.error("Please Enter all the fields in the form", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
         } else {
             fetch('http://localhost:9292/students', {
                 method: 'POST',
@@ -31,10 +32,15 @@ function StudentForm({ newStudent }) {
                     setLastName('');
                     setPhone('');
                     setEmail('');
-                    setCreated(true);
-                    setTimeout(() => setCreated(false), 3000)
+                    toast.success("You have created a new Student", {
+                        position: toast.POSITION.BOTTOM_CENTER
+                    });
                 })
         }
+    }
+
+    const notify = () => {
+
     }
 
     return (
@@ -87,25 +93,6 @@ function StudentForm({ newStudent }) {
                     </div>
                 </form>
             </section>
-
-
-            {
-                created ?
-                    <div>
-                        <h1 className="container">You have created a new Student</h1>
-                    </div>
-                    :
-                    <></>
-            }
-
-            {
-                isInvalid ?
-                    <div>
-                        <h1 className="container">Please Enter all the fields in the form</h1>
-                    </div>
-                    :
-                    <></>
-            }
         </>
     )
 }
